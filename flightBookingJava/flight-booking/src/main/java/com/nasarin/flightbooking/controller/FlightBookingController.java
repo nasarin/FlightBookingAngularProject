@@ -23,7 +23,7 @@ public class FlightBookingController {
     }
 
     @GetMapping("/viewTicket")
-    public ResponseEntity<ResponseDto> getBookedTicketByPnrNo(@RequestParam String pnrNo){
+    public ResponseEntity<ResponseDto> getBookedTicketByPnrNo(@RequestParam int pnrNo){
         return ResponseEntity.ok(flightBookingService.getBookedTicketByPnrNo(pnrNo));
     }
     @GetMapping("/viewHistory")
@@ -31,8 +31,5 @@ public class FlightBookingController {
         return ResponseEntity.ok(flightBookingService.getBookedTicketByEmailId(emailId));
     }
 
-    /*@DeleteMapping("/deleteFlight")
-    public ResponseEntity<Boolean> deleteFlightDetails(@RequestParam String pnrNo){
-        return ResponseEntity.ok(flightBookingService.deleteFlightDetails(pnrNo));
-    }*/
+
 }

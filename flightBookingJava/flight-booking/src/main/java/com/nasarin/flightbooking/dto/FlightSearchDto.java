@@ -7,5 +7,5 @@ public class FlightSearchDto {
     private String endDatetime ;
     private String airlineName ;
     private String ticketCost ;
-    private String pnrNo;
+    private int pnrNo;
 }

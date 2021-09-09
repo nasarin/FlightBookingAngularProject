@@ -51,7 +51,7 @@ public class FlightBookingService {
         return  flightDetails;
     }
 
-    public ResponseDto getBookedTicketByPnrNo(String pnrNo){
+    public ResponseDto getBookedTicketByPnrNo(int pnrNo){
         ResponseDto responseDto= new ResponseDto();
 
         FlightDetails   flightDetails=  flightBookingRepository.findByPnrNo(pnrNo);
@@ -81,16 +81,6 @@ public class FlightBookingService {
         return responseDto;
     }
 
-   /* public Boolean deleteFlightDetails(String pnrNo){
-        FlightDetails flightDetailsBooking= flightBookingRepository.findByPnrNo(pnrNo);
 
-        if(Objects.nonNull(flightDetailsBooking)){
-            flightDetailsBooking.setStatus("Cancelled");
-            FlightDetails saveFlightBooking= flightBookingRepository.saveFlightDetails(flightDetailsBooking);
-            return true;
-        }else
-        return false;
-    }
 
-*/
 }

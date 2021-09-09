@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface FlightBookingRepository extends JpaRepository<FlightDetails, Integer> {
-    FlightDetails findByPnrNo (String pnrNo);
-    //FlightDetails saveFlightDetails (FlightDetails flightDetailsBooking);
+    FlightDetails findByPnrNo (int pnrNo);
 
     List<FlightDetails>  findByEmailId(String emailId);
 }

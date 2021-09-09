@@ -22,6 +22,6 @@ public class FlightDetails {
     //private Set<PassengerDetails> passengerDetails ;
     private String meal ;
     private String seatNo;
-    private String pnrNo;
+    private int pnrNo;
     private String Status;
 }
