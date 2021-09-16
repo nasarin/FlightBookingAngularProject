@@ -10,6 +10,7 @@ import com.nasarin.flightbooking.model.User;
 import com.nasarin.flightbooking.repository.FlightBookingRepository;
 import com.nasarin.flightbooking.repository.UserRegisterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,16 +25,20 @@ public class FlightBookingService {
     public  String ticketBooking(TicketBookingDto ticketBookingDto) {
 
         String resultMsg = "";
-        FlightDetails flightDetails = toRegisterEntity(ticketBookingDto);
+        try {
+            FlightDetails flightDetails = toRegisterEntity(ticketBookingDto);
 
-        FlightDetails savedUser  =  flightBookingRepository.save(flightDetails);
+            FlightDetails savedUser = flightBookingRepository.save(flightDetails);
 
-        if(Objects.nonNull(savedUser)){
-            resultMsg = "Success";
-        }else{
-            resultMsg = "Failure";
+            if (Objects.nonNull(savedUser)) {
+                resultMsg = "Success";
+            } else {
+                resultMsg = "Failure";
+            }
+        }catch (ConfigDataNotFoundException ex) {
+            System.out.println("Unable to book ticket.");
+            throw ex;
         }
-
         return resultMsg;
     }
 
@@ -53,7 +58,7 @@ public class FlightBookingService {
 
     public ResponseDto getBookedTicketByPnrNo(int pnrNo){
         ResponseDto responseDto= new ResponseDto();
-
+try{
         FlightDetails   flightDetails=  flightBookingRepository.findByPnrNo(pnrNo);
 
         if(Objects.nonNull(flightDetails)){
@@ -62,6 +67,10 @@ public class FlightBookingService {
         }else{
             responseDto.setMsg("Failure");
         }
+       }catch (ConfigDataNotFoundException ex) {
+    System.out.println("Ticket is not booked.");
+    throw ex;
+}
 
         return responseDto;
     }
